@@ -1,0 +1,3 @@
+bind_addr = ":8080"
+log_level = "debug"
+database_url = "user=math password=math host=localhost dbname=camp_dev sslmode=disable"
