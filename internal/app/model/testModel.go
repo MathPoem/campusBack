@@ -125,4 +125,112 @@ var (
 			Semester:  0,
 		},
 	}
+	PersonList = []Pearson{
+		{
+			ID:           1,
+			DepartmentID: 1,
+			FirstName:    "Александр",
+			MiddleName:   "Алексеевич",
+			SecondName:   "Флеров",
+			Age:          33,
+			URL:          "https://istina.msu.ru/profile/AAFlerov/",
+			FirstDegree:  "",
+			SecondDegree: "",
+			ThirdDegree:  "",
+		},
+		{
+			ID:           2,
+			DepartmentID: 2,
+			FirstName:    "Наталия",
+			MiddleName:   "Евгеньевна",
+			SecondName:   "Шавгулидзе",
+			Age:          40,
+			URL:          "https://istina.msu.ru/profile/Natalia_Shavgulidze/",
+			FirstDegree:  "",
+			SecondDegree: "",
+			ThirdDegree:  "",
+		},
+		{
+			ID:           3,
+			DepartmentID: 2,
+			FirstName:    "Юрий",
+			MiddleName:   "Викторович",
+			SecondName:   "Садовничий",
+			Age:          56,
+			URL:          "https://istina.msu.ru/profile/uvs/",
+			FirstDegree:  "",
+			SecondDegree: "",
+			ThirdDegree:  "",
+		},
+	}
+	DepartmentList = []Department{
+		{
+			ID:       1,
+			Name:     "Кафедра МатематическогоАнализа",
+			SchoolID: 1,
+			URL:      "",
+		},
+		{
+			ID:       2,
+			Name:     "Кафедра Общей Геометрии и Топологии",
+			SchoolID: 1,
+			URL:      "",
+		},
+	}
+	CourseList = []Course{
+		{
+			ID:                  1,
+			Name:                "Маттематический Анализ 1",
+			ProgramID:           1,
+			Credits:             8,
+			HoursLecture:        4,
+			HoursSeminar:        4,
+			EstimationInDiploma: false,
+			Exam:                true,
+			Description:         "первая часть общего курса математического анализа",
+			URL:                 "",
+		},
+		{
+			ID:                  2,
+			Name:                "Математичексий Анализ 2",
+			ProgramID:           1,
+			Credits:             8,
+			HoursLecture:        4,
+			HoursSeminar:        4,
+			EstimationInDiploma: false,
+			Exam:                true,
+			Description:         "вторая часть общего курса математического анализа",
+			URL:                 "",
+		},
+		{
+			ID:                  3,
+			Name:                "Аналитическа Геометрия",
+			ProgramID:           1,
+			Credits:             8,
+			HoursLecture:        4,
+			HoursSeminar:        4,
+			EstimationInDiploma: false,
+			Exam:                true,
+			Description:         "Аналичическая геометрия и введение в линейную алгебру",
+			URL:                 "",
+		},
+	}
+	LectureList = []Lecture{
+		{
+			ID:       1,
+			Year:     2021,
+			PersonID: 3,
+			CourseID: 3,
+			URL:      "",
+		},
+	}
+	SeminarList = []Seminar{
+		{
+			ID:       1,
+			Year:     2021,
+			PersonID: 2,
+			CourseID: 3,
+			URL:      "",
+		},
+	}
 )

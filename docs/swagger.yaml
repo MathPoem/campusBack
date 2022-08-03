@@ -1,0 +1,51 @@
+basePath: /
+definitions:
+  model.University:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      url:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is mega cool swagger info
+  title: campus swagger
+  version: "1.0"
+paths:
+  /university:
+    get:
+      consumes:
+      - application/json
+      description: get university list
+      operationId: university-list
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.University'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get university list
+      tags:
+      - Public
+swagger: "2.0"

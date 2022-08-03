@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+	"github.com/swaggo/http-swagger"
 	"net/http"
 )
 
@@ -37,8 +38,16 @@ func (s *server) configureRouter() {
 
 	s.router.HandleFunc("/users", s.handleAcademic()).Methods("GET")
 	s.router.HandleFunc("/university", s.handleUniversity()).Methods("GET")
-	s.router.HandleFunc("/school{id:[0-9]+}", s.handleSchool()).Methods("GET")
-	s.router.HandleFunc("/program{id:[0-9]+}", s.handleProgram()).Methods("GET")
+	s.router.HandleFunc("/school/{id:[0-9]+}", s.handleSchool()).Methods("GET")
+	s.router.HandleFunc("/program/{id:[0-9]+}", s.handleProgram()).Methods("GET")
+
+	s.router.PathPrefix("/swagger/").Handler(httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:1323/swagger/doc.json"), //The url pointing to API definition
+		httpSwagger.DeepLinking(true),
+		httpSwagger.DocExpansion("none"),
+		httpSwagger.DomID("swagger-ui"),
+	)).Methods(http.MethodGet)
+
 }
 
 func (s *server) handleAcademic() http.HandlerFunc {
@@ -46,6 +55,16 @@ func (s *server) handleAcademic() http.HandlerFunc {
 	}
 }
 
+// @Summary      Get university list
+// @Tags		 Public
+// @Description  get university list
+// @ID           university-list
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Account ID"
+// @Success      200  {object}  []model.University
+// @Failure      400  {object}  string
+// @Router       /university [get]
 func (s *server) handleUniversity() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		u, err := s.store.Academic().GetUniversity()

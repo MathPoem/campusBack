@@ -20,7 +20,7 @@ CREATE TABLE "department" (
                                "url" varchar
 );
 
-CREATE TABLE "pearson" (
+CREATE TABLE "person" (
                            "id" bigserial not null PRIMARY KEY ,
                            "department_id" int not null ,
                            "first_name" varchar not null ,
@@ -43,6 +43,7 @@ CREATE TABLE "program" (
 
 CREATE TABLE "course" (
                           "id" bigserial not null primary key ,
+                          "name" varchar not null ,
                           "program_id" int not null ,
                           "credits" int not null ,
                           "hours_lecture" int not null ,
@@ -55,25 +56,25 @@ CREATE TABLE "course" (
 
 CREATE TABLE "lecture" (
                            "id" bigserial not null primary key ,
-                           "year" date not null ,
-                           "pearson_id" int not null ,
+                           "year" int not null ,
+                           "person_id" int not null ,
                            "course_id" int not null ,
                            "url" varchar
 );
 
 CREATE TABLE "seminar" (
                            "id" bigserial not null primary key ,
-                           "year" date not null ,
-                           "pearson_id" int not null ,
+                           "year" int not null ,
+                           "person_id" int not null ,
                            "course_id" int not null ,
                            "url" varchar
 );
 
-ALTER TABLE "lecture" ADD FOREIGN KEY ("pearson_id") REFERENCES "pearson" ("id");
+ALTER TABLE "lecture" ADD FOREIGN KEY (person_id) REFERENCES person ("id");
 
 ALTER TABLE "lecture" ADD FOREIGN KEY ("course_id") REFERENCES "course" ("id");
 
-ALTER TABLE "seminar" ADD FOREIGN KEY ("pearson_id") REFERENCES "pearson" ("id");
+ALTER TABLE "seminar" ADD FOREIGN KEY (person_id) REFERENCES person ("id");
 
 ALTER TABLE "seminar" ADD FOREIGN KEY ("course_id") REFERENCES "course" ("id");
 
@@ -81,7 +82,7 @@ ALTER TABLE "course" ADD FOREIGN KEY ("program_id") REFERENCES "program" ("id");
 
 ALTER TABLE "program" ADD FOREIGN KEY ("school_id") REFERENCES "school" ("id");
 
-ALTER TABLE "pearson" ADD FOREIGN KEY ("department_id") REFERENCES "department" ("id");
+ALTER TABLE person ADD FOREIGN KEY ("department_id") REFERENCES "department" ("id");
 
 ALTER TABLE "school" ADD FOREIGN KEY ("university_id") REFERENCES "university" ("id");
 

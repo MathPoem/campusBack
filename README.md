@@ -15,3 +15,6 @@ pkg:
     crypto:     go get golang.org/x/crypto/bcrypt
 
     gor_cors:   go get github.com/gorilla/handlers
+
+    swag(mux):  go get -u github.com/swaggo/swag/cmd/swag
+                go get -u github.com/swaggo/http-swagger

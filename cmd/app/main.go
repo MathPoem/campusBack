@@ -1,5 +1,12 @@
 package main
 
+// @title           campus swagger
+// @version         1.0
+// @description     This is mega cool swagger info
+
+// @host      localhost:8080
+// @BasePath  /
+
 import (
 	"aws/internal/app/apiserver"
 	"flag"

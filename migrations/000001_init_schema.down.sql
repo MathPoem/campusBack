@@ -1,1 +1,1 @@
-DROP TABLE university, department, school, pearson, program, course, lecture, seminar
+DROP TABLE university, department, school, person, program, course, lecture, seminar

@@ -45,6 +45,7 @@ type Program struct {
 
 type Course struct {
 	ID                  int    `json:"id"`
+	Name                string `json:"name"`
 	ProgramID           int    `json:"programID"`
 	Credits             int    `json:"credits"`
 	HoursLecture        int    `json:"hoursLecture"`
@@ -56,17 +57,17 @@ type Course struct {
 }
 
 type Lecture struct {
-	ID        int    `json:"id"`
-	Year      int    `json:"year"`
-	PearsonID int    `json:"pearsonID"`
-	CourseID  int    `json:"courseID"`
-	URL       string `json:"url"`
+	ID       int    `json:"id"`
+	Year     int    `json:"year"`
+	PersonID int    `json:"pearsonID"`
+	CourseID int    `json:"courseID"`
+	URL      string `json:"url"`
 }
 
 type Seminar struct {
-	ID        int    `json:"id"`
-	Year      int    `json:"year"`
-	PearsonID int    `json:"pearsonID"`
-	CourseID  int    `json:"courseID"`
-	URL       string `json:"url"`
+	ID       int    `json:"id"`
+	Year     int    `json:"year"`
+	PersonID int    `json:"pearsonID"`
+	CourseID int    `json:"courseID"`
+	URL      string `json:"url"`
 }
