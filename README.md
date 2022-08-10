@@ -18,3 +18,5 @@ pkg:
 
     swag(mux):  go get -u github.com/swaggo/swag/cmd/swag
                 go get -u github.com/swaggo/http-swagger
+
+    testify:    go get github.com/stretchr/testify

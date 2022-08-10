@@ -1,5 +1,16 @@
 package model
 
+type AcademicModelTypeOrdered interface {
+	University |
+		School |
+		Department |
+		Pearson |
+		Program |
+		Course |
+		Lecture |
+		Seminar
+}
+
 type University struct {
 	ID      int    `json:"id"`
 	Country string `json:"country"`

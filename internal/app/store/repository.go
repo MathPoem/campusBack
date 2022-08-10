@@ -10,7 +10,13 @@ type UserRepository interface {
 
 type AcademicRepository interface {
 	GetUniversity() (*[]model.University, error)
-	GetSchool(idUniversity string) (*[]model.School, error)
-	GetProgram(idSchool string) (*[]model.Program, error)
+	GetSchoolByUniversity(idUniversity []string) (*[]model.School, error)
+	GetSchoolList() (*[]model.School, error)
+	GetProgramBySchool(idSchool []string) (*[]model.Program, error)
+	GetProgramList() (*[]model.Program, error)
+	GetCourseList() (*[]model.Course, error)
+	GetCourseByProgram(idProgram []string) (*[]model.Course, error)
+	GetDepartmentList() (*[]model.Department, error)
+	GetDepartmentBySchool(idSchool []string) (*[]model.Department, error)
 	InDefaultBase() error
 }

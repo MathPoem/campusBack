@@ -1,5 +1,19 @@
 package model
 
+func Filter[M AcademicModelTypeOrdered](listModel []M, filterFunc func(M, int) bool, val int) []M {
+	filtered := make([]M, 0)
+	for _, model := range listModel {
+		if filterFunc(model, val) {
+			filtered = append(filtered, model)
+		}
+	}
+	return filtered
+}
+
+func FilterSchool(Model School, val int) bool {
+	return Model.UniversityID == val
+}
+
 var (
 	UnivList = []University{
 		{

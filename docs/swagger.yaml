@@ -1,5 +1,63 @@
 basePath: /
 definitions:
+  model.Course:
+    properties:
+      credits:
+        type: integer
+      description:
+        type: string
+      estimationInDiploma:
+        type: boolean
+      exam:
+        type: boolean
+      hoursLecture:
+        type: integer
+      hoursSeminar:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      programID:
+        type: integer
+      url:
+        type: string
+    type: object
+  model.Department:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      schoolID:
+        type: integer
+      url:
+        type: string
+    type: object
+  model.Program:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      schoolID:
+        type: integer
+      semester:
+        type: integer
+      yearStart:
+        type: integer
+    type: object
+  model.School:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      universityID:
+        type: integer
+      url:
+        type: string
+    type: object
   model.University:
     properties:
       city:
@@ -20,18 +78,120 @@ info:
   title: campus swagger
   version: "1.0"
 paths:
+  /course:
+    get:
+      consumes:
+      - application/json
+      description: get course list
+      operationId: course-list
+      parameters:
+      - description: Course ID
+        in: query
+        name: courseID
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Course'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get course list
+      tags:
+      - Public
+  /department:
+    get:
+      consumes:
+      - application/json
+      description: get department list
+      operationId: department-list
+      parameters:
+      - description: school ID
+        in: query
+        name: schoolID
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Department'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get department list
+      tags:
+      - Public
+  /program:
+    get:
+      consumes:
+      - application/json
+      description: get program list
+      operationId: program-list
+      parameters:
+      - description: School ID
+        in: query
+        name: schoolID
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Program'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get program list
+      tags:
+      - Public
+  /school:
+    get:
+      consumes:
+      - application/json
+      description: get school list
+      operationId: school-list
+      parameters:
+      - description: University ID
+        in: query
+        name: universityID
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.School'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get school list
+      tags:
+      - Public
   /university:
     get:
       consumes:
       - application/json
       description: get university list
       operationId: university-list
-      parameters:
-      - description: Account ID
-        in: path
-        name: id
-        required: true
-        type: integer
       produces:
       - application/json
       responses:
