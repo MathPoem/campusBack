@@ -46,6 +46,9 @@ func (s *server) configureRouter() {
 	s.router.HandleFunc("/program", s.handleProgram()).Methods("GET")
 	s.router.HandleFunc("/course", s.handleCourse()).Methods("GET")
 	s.router.HandleFunc("/department", s.handleDepartment()).Methods("GET")
+	s.router.HandleFunc("/person", s.handlePerson()).Methods("GET")
+	s.router.HandleFunc("/lecture", s.handleLecture()).Methods("GET")
+	s.router.HandleFunc("/seminar", s.handleSeminar()).Methods("GET")
 
 	s.router.PathPrefix("/swagger/").Handler(httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:8080/swagger/doc.json"),
@@ -190,6 +193,69 @@ func (s *server) handleDepartment() http.HandlerFunc {
 		"schoolID",
 		s.store.Academic().GetDepartmentBySchool,
 		s.store.Academic().GetDepartmentList,
+	)
+}
+
+// @Summary      Get pearson list
+// @Param        departmentID   query      int  false  "department ID"
+// @Tags		 Public
+// @Description  get person list
+// @ID           person-list
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  []model.Person
+// @Failure      400  {object}  string
+// @Router       /person [get]
+func (s *server) handlePerson() http.HandlerFunc {
+	return handlerAcademicTemplate(
+		[]model.Person{},
+		s.error,
+		s.respond,
+		"departmentID",
+		s.store.Academic().GetPersonByDepartment,
+		s.store.Academic().GetPersonList,
+	)
+}
+
+// @Summary      Get lecture list
+// @Param        courseID   query      int  false  "course ID"
+// @Tags		 Public
+// @Description  get lecture list
+// @ID           lecture-list
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  []model.Lecture
+// @Failure      400  {object}  string
+// @Router       /lecture [get]
+func (s *server) handleLecture() http.HandlerFunc {
+	return handlerAcademicTemplate(
+		[]model.Lecture{},
+		s.error,
+		s.respond,
+		"courseID",
+		s.store.Academic().GetLectureByCourse,
+		s.store.Academic().GetLectureList,
+	)
+}
+
+// @Summary      Get seminar list
+// @Param        courseID   query      int  false  "course ID"
+// @Tags		 Public
+// @Description  get seminar list
+// @ID           seminar-list
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  []model.Seminar
+// @Failure      400  {object}  string
+// @Router       /seminar [get]
+func (s *server) handleSeminar() http.HandlerFunc {
+	return handlerAcademicTemplate(
+		[]model.Seminar{},
+		s.error,
+		s.respond,
+		"courseID",
+		s.store.Academic().GetSeminarByCourse,
+		s.store.Academic().GetSeminarList,
 	)
 }
 

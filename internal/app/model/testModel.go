@@ -139,7 +139,7 @@ var (
 			Semester:  0,
 		},
 	}
-	PersonList = []Pearson{
+	PersonList = []Person{
 		{
 			ID:           1,
 			DepartmentID: 1,

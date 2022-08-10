@@ -4,7 +4,7 @@ type AcademicModelTypeOrdered interface {
 	University |
 		School |
 		Department |
-		Pearson |
+		Person |
 		Program |
 		Course |
 		Lecture |
@@ -33,7 +33,7 @@ type Department struct {
 	URL      string `json:"url"`
 }
 
-type Pearson struct {
+type Person struct {
 	ID           int    `json:"id"`
 	DepartmentID int    `json:"departmentID"`
 	FirstName    string `json:"firstName"`

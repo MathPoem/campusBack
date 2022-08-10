@@ -18,5 +18,11 @@ type AcademicRepository interface {
 	GetCourseByProgram(idProgram []string) (*[]model.Course, error)
 	GetDepartmentList() (*[]model.Department, error)
 	GetDepartmentBySchool(idSchool []string) (*[]model.Department, error)
+	GetPersonList() (*[]model.Person, error)
+	GetPersonByDepartment(idDepartment []string) (*[]model.Person, error)
+	GetLectureList() (*[]model.Lecture, error)
+	GetLectureByCourse(idCourse []string) (*[]model.Lecture, error)
+	GetSeminarList() (*[]model.Seminar, error)
+	GetSeminarByCourse(idCourse []string) (*[]model.Seminar, error)
 	InDefaultBase() error
 }

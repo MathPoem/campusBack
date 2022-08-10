@@ -170,6 +170,114 @@ func (r *AcademicRepository) GetDepartmentList() (*[]model.Department, error) {
 	return &pl, nil
 }
 
+func (r *AcademicRepository) GetPersonByDepartment(idDepartment []string) (*[]model.Person, error) {
+	var pl []model.Person
+	rows, err := r.store.db.Query(
+		"SELECT id, department_id, first_name, middle_name, second_name, age, url, first_degree, second_degree, third_degree FROM person WHERE department_id = $1", &idDepartment[0])
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Person
+		if err := rows.Scan(&p.ID, &p.DepartmentID, &p.FirstName, &p.MiddleName, &p.SecondName, &p.Age, &p.URL, &p.FirstDegree, &p.SecondDegree, &p.ThirdDegree); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
+func (r *AcademicRepository) GetPersonList() (*[]model.Person, error) {
+	var pl []model.Person
+	rows, err := r.store.db.Query(
+		"SELECT id, department_id, first_name, middle_name, second_name, age, url, first_degree, second_degree, third_degree FROM person")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Person
+		if err := rows.Scan(&p.ID, &p.DepartmentID, &p.FirstName, &p.MiddleName, &p.SecondName, &p.Age, &p.URL, &p.FirstDegree, &p.SecondDegree, &p.ThirdDegree); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
+func (r *AcademicRepository) GetLectureByCourse(idCourse []string) (*[]model.Lecture, error) {
+	var pl []model.Lecture
+	rows, err := r.store.db.Query(
+		"SELECT id, person_id, course_id, url, year FROM lecture WHERE course_id = $1", &idCourse[0])
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Lecture
+		if err := rows.Scan(&p.ID, &p.PersonID, &p.CourseID, &p.URL, &p.Year); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
+func (r *AcademicRepository) GetLectureList() (*[]model.Lecture, error) {
+	var pl []model.Lecture
+	rows, err := r.store.db.Query(
+		"SELECT id, person_id, course_id, url, year FROM lecture")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Lecture
+		if err := rows.Scan(&p.ID, &p.PersonID, &p.CourseID, &p.URL, &p.Year); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
+func (r *AcademicRepository) GetSeminarByCourse(idCourse []string) (*[]model.Seminar, error) {
+	var pl []model.Seminar
+	rows, err := r.store.db.Query(
+		"SELECT id, person_id, course_id, url, year FROM lecture WHERE course_id = $1", &idCourse[0])
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Seminar
+		if err := rows.Scan(&p.ID, &p.PersonID, &p.CourseID, &p.URL, &p.Year); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
+func (r *AcademicRepository) GetSeminarList() (*[]model.Seminar, error) {
+	var pl []model.Seminar
+	rows, err := r.store.db.Query(
+		"SELECT id, person_id, course_id, url, year FROM lecture")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var p model.Seminar
+		if err := rows.Scan(&p.ID, &p.PersonID, &p.CourseID, &p.URL, &p.Year); err != nil {
+			return nil, err
+		}
+		pl = append(pl, p)
+	}
+	return &pl, nil
+}
+
 func (r *AcademicRepository) InDefaultBase() error {
 	for _, univ := range model.UnivList {
 		r.store.db.QueryRow(
